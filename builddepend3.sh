@@ -1,26 +1,22 @@
 set -eo pipefail
 
-rm -rf sam-app
-sam init --runtime python3.8 --dependency-manager pip --name sam-app --app-template hello-world
+rm -rf sam-app  # remove any existing instances
+sam init --runtime python3.8 --dependency-manager pip --name sam-app --app-template hello-world # build the base app
 
 cd sam-app
-echo "Current working directory"
+echo -e "Current working directory: \c "
 pwd
 
 #   Build the dependencies
 echo "Build Dependencies"
 mkdir --verbose dependencies
 mkdir --verbose dependencies/python
-# mkdir --verbose dependencies/python/lib
-# mkdir --verbose dependencies/python/lib/python3.9
-# mkdir --verbose dependencies/python/lib/python3.9/site-packages
-cp --verbose ../requirements.txt dependencies
-# python3 -m pip install --requirement dependencies/requirements.txt --target dependencies/python/lib/python3.9/site-packages
-python3 -m pip install --requirement dependencies/requirements.txt --target dependencies/python
+cp --verbose ../requirements.txt dependencies       # copy the pip requirements.txt into place
+python3 -m pip install --requirement dependencies/requirements.txt --target dependencies/python     # pip install whats needed
 
-# Deployment Setup
+# Scenario Deployment Setup
 cp --verbose ../template-depend3.yaml template.yaml
-# copy the app.py
+# Scenario py script
 cp --verbose ../app-depend3.py hello_world/app.py
 
 tree -L 3 -I 'tests'
