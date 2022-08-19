@@ -1,6 +1,6 @@
 # sam-lambdalayer-poc
 
-This is just a proof of concept repo for me to learn to work with various scenarios building Lambda functions in AWS Severless via the AWS SAM CLI. 
+This is just a proof of concept repo for me to learn to work with specific scenarios building Lambda functions in AWS Severless via the AWS SAM CLI in the Cloud9 IDE. 
 
 This was an iterative process to help me understand why I couldn't get the layer to work correctly, initially. These scripts are the final result.
 
